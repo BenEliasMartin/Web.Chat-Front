@@ -1,11 +1,17 @@
 import sdk from '@stackblitz/sdk';
-import { useState } from 'react';
-
+import { useEffect, useState } from 'react';
+import { usePreferences } from '@/pages/provider/PreferencesProvider';
 
 
 export default function main() {
     const [chat, setChat] = useState([]);
     const [currentChatMessage, setCurrentChatMessage] = useState('');
+
+    const { userPreferences, updatePreferences } = usePreferences();
+    useEffect(() => {
+        console.log(userPreferences);
+    }
+        , [userPreferences]);
 
     return (
         <div className="flex h-screen">
